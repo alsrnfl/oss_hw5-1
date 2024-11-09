@@ -10,19 +10,39 @@
 
 </head>
 <body>
-    <button onclick="getDataFromJSONFile()">get DATA</button>
-    <button onclick="createDataToJSONFile()">create DATA</button>
-    <button onclick="updateDataToJSONFile()">update DATA</button>
-    <button onclick="deleteDataFromJSONFile()">delete DATA</button>
-    <br>
-    ID : <input type="text" id="student_id" /><br>
-    NAME : <input type="text" id="student_name" /><br>
-    AGE : <input type="number" id="student_age" /><br>
-    MAJOR : <input type="text" id="student_major" /><br><br>
-    
-    
-    <div id="div_students">
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Student Management</h2>
+        
+        <!-- Input Form -->
+        <div class="card p-4 mb-4">
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <input type="text" id="student_id" class="form-control" placeholder="ID" aria-label="ID">
+                </div>
+                <div class="col-md-3">
+                    <input type="text" id="student_name" class="form-control" placeholder="Name" aria-label="Name">
+                </div>
+                <div class="col-md-3">
+                    <input type="number" id="student_age" class="form-control" placeholder="Age" aria-label="Age">
+                </div>
+                <div class="col-md-3">
+                    <input type="text" id="student_major" class="form-control" placeholder="Major" aria-label="Major">
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <button onclick="getDataFromJSONFile()" class="btn btn-primary me-2">Get Data</button>
+                <button onclick="createDataToJSONFile()" class="btn btn-success me-2">Create Data</button>
+                <button onclick="updateDataToJSONFile()" class="btn btn-warning me-2">Update Data</button>
+                <button onclick="deleteDataFromJSONFile()" class="btn btn-danger">Delete Data</button>
+            </div>
+        </div>
+
+        <!-- Students Display Section -->
+        <div id="div_students" class="row row-cols-1 row-cols-md-3 g-4">
+            <!-- Student data will be displayed here -->
+        </div>
     </div>
+
     <!-- Alert Modal -->
     <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -118,7 +138,7 @@
             xhr.send();
             xhr.onload = () => {
                 if (xhr.status === 200) {
-                    alert("삭제 성공!");
+                    showAlert("삭제 성공!");
                     getDataFromJSONFile();
                 } else {
                     alert("삭제 실패!");
